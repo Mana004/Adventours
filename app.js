@@ -8,6 +8,7 @@ const hpp = require('hpp');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+const compression = require('compression');
 
 const app = express();
 
@@ -24,7 +25,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 // 1) Middlewares
 
-console.log(process.env.NODE_ENV);
+//console.log(process.env.NODE_ENV);
 
 app.use(cors());
 
@@ -34,7 +35,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 app.use((req, res, next) => {
-  console.log('Hello From Middleware 👐');
+  //console.log('Hello From Middleware 👐');
   next();
 });
 
@@ -105,10 +106,12 @@ app.use(cookieParser());
 // //Sanitization against NoSQL Injection
 // app.use(mongoSanitize());
 
+app.use(compression());
+
 //Test Middleware
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
-  console.log(req.cookies);
+  //console.log(req.cookies);
   next();
 });
 
@@ -131,7 +134,7 @@ try {
     next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
   });
 } catch (err) {
-  console.error('Error while registering fallback route:', err.message);
+  //console.error('Error while registering fallback route:', err.message);
 }
 
 app.use(globalErrorHandler);
