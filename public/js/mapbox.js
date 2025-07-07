@@ -1,7 +1,8 @@
 /*eslint-disable*/
 
 export const displayMap = (locations) => {
-  mapboxgl.accessToken = process.env.MAPBOX_TOKEN;
+  mapboxgl.accessToken =
+    'pk.eyJ1IjoibWFuaXNocGF0aWwyMDA0IiwiYSI6ImNtY2x2cm1lZzBmcnEya3NkODRhZHU3eWEifQ.eeQNTPBPQQiKFtD0VqWG3A';
   const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/light-v11',
